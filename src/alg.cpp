@@ -11,8 +11,8 @@ int pr(char x) {
         return 0;
 }
 std::string infx2pstfx(std::string inf) {
-  stack<char> stack;
-    string str;
+  std::stack<char> stack;
+    std::string str;
     for (int i = 0; i < inf.length(); i++) {
         if ((inf[i] >= '0') && (inf[i] <= '9')) {
             str += inf[i];
@@ -55,7 +55,7 @@ std::string infx2pstfx(std::string inf) {
     return str;
 }
 int eval(std::string pst) {
-  stack<char> stack;
+  std::stack<char> stack;
   int result, n1, n2;
         for (int i = 0; i < pst.length(); i++) {
             if ((pst[i] >= '0') && (pst[i] <= '9')) {
