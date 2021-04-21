@@ -18,32 +18,25 @@ std::string infx2pstfx(std::string inf) {
             str += inf[i];
             str += " ";
         }
-        else {
-            if ((stack.empty()) || (inf[i] == '(') || (pr(inf[i] > pr(stack.top())))) {
+        else if ((stack.empty()) || (inf[i] == '(') || (pr(inf[i] > pr(stack.top())))) {
             stack.push(inf[i]);
-            }
         }
-        else {
-            if (inf[i] == ')') {
-            while (stack.top() != '(') {
-                str += stack.top();
-                str += ' ';
-                stack.pop();
-            }
-            stack.pop();
-            }
-        }
-        
-        else {
-            if (!stack.empty())  {
-            while (pr(inf[i] <= pr(stack.top()))) {
-                str += stack.top();
-                str += ' ';
-                stack.pop();
-            }
-            stack.push(inf[i]);
-            }
-        }
+             else if (inf[i] == ')') {
+                    while (stack.top() != '(') {
+                        str += stack.top();
+                        str += ' ';
+                        stack.pop();
+                    }
+                 stack.pop();
+             }
+                  else if (!stack.empty())  {
+                      while (pr(inf[i] <= pr(stack.top()))) {
+                          str += stack.top();
+                          str += ' ';
+                          stack.pop();
+                      }
+                      stack.push(inf[i]);
+                  }
     }
      if (!stack.empty()) {
          while (!stack.empty()) {
