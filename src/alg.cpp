@@ -17,20 +17,17 @@ std::string infx2pstfx(std::string inf) {
         if ((inf[i] >= '0') && (inf[i] <= '9')) {
             str += inf[i];
             str += " ";
-        }
-         else if ((stack.empty()) || (inf[i] == '(')
+        } else if ((stack.empty()) || (inf[i] == '(')
                  || (pr(inf[i] > pr(stack.top())))) {
             stack.push(inf[i]);
-        }
-         else if (inf[i] == ')') {
+        } else if (inf[i] == ')') {
             while (stack.top() != '(') {
                 str += stack.top();
                 str += ' ';
                 stack.pop();
             }
             stack.pop();
-        }
-         else {
+        } else {
             while (!stack.empty() && (pr(stack.top()) >= pr(inf[i]))) {
                 str += stack.top();
                 str += ' ';
@@ -55,8 +52,7 @@ int eval(std::string pst) {
         for (int i = 0; i < pst.length(); i++) {
             if ((pst[i] >= '0') && (pst[i] <= '9')) {
                 stack.push(pst[i] - '0');
-            }
-             else if (pst[i] != ' ') {
+            } else if (pst[i] != ' ') {
                 n2 = stack.top();
                 stack.pop();
                 n1 = stack.top();
