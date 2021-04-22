@@ -2,8 +2,7 @@
 #include <string>
 #include <stack>
 
-int pr(char x) 
-{
+int pr(char x) {
     if ((x == '-') || (x == '+'))
         return 2;
     else if ((x == '/') || (x == '*'))
@@ -11,35 +10,28 @@ int pr(char x)
     else
         return 0;
 }
-std::string infx2pstfx(std::string inf) 
-{
+std::string infx2pstfx(std::string inf) {
   std::stack<char> stack;
     std::string str;
-    for (int i = 0; i < inf.length(); i++) 
-    {
-        if ((inf[i] >= '0') && (inf[i] <= '9')) 
-        {
+    for (int i = 0; i < inf.length(); i++) {
+        if ((inf[i] >= '0') && (inf[i] <= '9')) {
             str += inf[i];
             str += " ";
         }
-        else if ((stack.empty()) || (inf[i] == '(') || (pr(inf[i] > pr(stack.top())))) 
-        {
+        else if ((stack.empty()) || (inf[i] == '(') || (pr(inf[i] > pr(stack.top())))) {
             stack.push(inf[i]);
         }
-        else if (inf[i] == ')') 
-        {
-            while (stack.top() != '(') 
-            {
+        else if (inf[i] == ')') {
+            while (stack.top() != '(') {
                 str += stack.top();
                 str += ' ';
                 stack.pop();
             }
             stack.pop();
         }
-        else 
+        else
         {
-            while (!stack.empty() && (pr(stack.top()) >= pr(inf[i])))
-            {
+            while (!stack.empty() && (pr(stack.top()) >= pr(inf[i]))) {
                 str += stack.top();
                 str += ' ';
                 stack.pop();
@@ -48,8 +40,7 @@ std::string infx2pstfx(std::string inf)
         }
     }
      if (!stack.empty())
-         while (!stack.empty()) 
-         {
+         while (!stack.empty()) {
             str += stack.top();
             str += ' ';
             stack.pop();
@@ -57,18 +48,14 @@ std::string infx2pstfx(std::string inf)
     str.pop_back();
     return str;
 }
-int eval(std::string pst) 
-{
+int eval(std::string pst) {
   std::stack<char> stack;
   int result, n1, n2;
-        for (int i = 0; i < pst.length(); i++) 
-        {
-            if ((pst[i] >= '0') && (pst[i] <= '9')) 
-            {
+        for (int i = 0; i < pst.length(); i++) {
+            if ((pst[i] >= '0') && (pst[i] <= '9')) {
                 stack.push(pst[i] - '0');
             }
-            else if (pst[i] != ' ') 
-            {
+            else if (pst[i] != ' ') {
                 n2 = stack.top();
                 stack.pop();
                 n1 = stack.top();
